@@ -23,6 +23,17 @@ function runGame(difficulty){
     console.log(difficulty);
     console.log(pokemonId);
     getPokemon(pokemonId);
+
+    if (difficulty === "easy"){
+        displayEasyDifficulty()
+    } else if(difficulty === "medium"){
+        displayMediumDifficulty()
+    } else if(difficulty === "hard"){
+        displayHardDifficulty()
+    } else{
+        alert(`Unknown difficulty: ${difficulty}.`);
+        throw `Unknown difficulty: ${difficulty}.`;
+    }
 }
 
 async function getPokemon(pokemonId){
@@ -30,5 +41,17 @@ async function getPokemon(pokemonId){
     
     let res = await fetch(pokeApiUrl);
     let pokemon = await res.json();
+    console.log(pokemon);
+}
 
+function displayEasyDifficulty(){
+
+}
+
+function displayMediumDifficulty(){
+    
+}
+
+function displayHardDifficulty(){
+    
 }
