@@ -17,7 +17,7 @@
         </div>
         <div id="pokemon-container">
             <div id="pokemon-info">
-                <img src="#" alt="Image of a randomized Pokemon's silhouette" id="pokemon-image">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/132.png" alt="Image of a randomized Pokemon's silhouette" id="pokemon-image">
                 <div id="pokemon-types">
                     <span class="type-box grass">GRASS</span>
                     <span class="type-box poison">POISON</span>
@@ -25,9 +25,18 @@
                 <div id="pokemon-description"></div>
             </div>
         </div>
-        <div id="guess-container">
-            <input type="text">
+        <div id="text-guess-container">
+            <input type="text" id="answer-box">
+            <button data-type="submit">Submit Answer</button>
         </div>
+        <div id="multiple-choice-container">
+            
+        </div>
+    </section>
+    <section id="difficulty-box">
+        <button data-type="easy" class="btn easy">Easy</button>
+        <button data-type="medium" class="btn medium">Medium</button>
+        <button data-type="hard" class="btn hard">Hard</button>
     </section>
     
 </body>

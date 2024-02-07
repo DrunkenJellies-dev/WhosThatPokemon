@@ -12,7 +12,7 @@ body {
     text-align: center;
 }
 
-#content-box{
+#content-box, #difficulty-box{
     width: 600px;
     height: auto;
     border: 10px solid lightgray;
@@ -23,3 +23,49 @@ body {
     margin-top: 60px;
 }
 
+#difficulty-box{
+    display: inline-block;   
+    padding: 5px; 
+}
+
+#difficulty-box{
+    width: auto;
+}
+
+/* Common Button Styles */
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 130px;
+}
+  
+/* Easy Button */
+.btn.easy {
+    background-color: #4caf50; 
+    color: white;
+}
+  
+/* Medium Button */
+.btn.medium {
+    background-color: #f39c12; 
+    color: white;
+}
+  
+.btn.medium:hover {
+    background-color: #d18e0d; 
+}
+  
+/* Hard Button */
+.btn.hard {
+    background-color: #f44336;
+    color: white;
+}
+  
+.btn.hard:hover {
+    background-color: #d32f2f; 
+}
