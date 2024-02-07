@@ -20,8 +20,6 @@ document.addEventListener("DOMContentLoaded", async function(){
 
 function runGame(difficulty){
     let pokemonId = Math.floor((Math.random() * 151) + 1);
-    console.log(difficulty);
-    console.log(pokemonId);
     getPokemon(pokemonId);
 
     if (difficulty === "easy"){
@@ -42,6 +40,15 @@ async function getPokemon(pokemonId){
     let res = await fetch(pokeApiUrl);
     let pokemon = await res.json();
     console.log(pokemon);
+
+    let pokemonName = pokemon["name"];
+    let pokemonType = pokemon["types"];
+    let pokemonImg = pokemon["sprites"]["other"]["official-artwork"]["front_default"];
+
+    res = await fetch(pokemon["species"]["url"]);
+    let pokemonDesc = await res.json();
+
+    pokemonDesc = pokemonDesc["flavor_text_entries"][11]["flavor_text"];
 }
 
 function displayEasyDifficulty(){
