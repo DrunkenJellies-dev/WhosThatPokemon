@@ -1,0 +1,25 @@
+:root{
+    --primary-color: white;
+    --secondary-color: black;
+    --tertiary-color: red;
+
+}
+
+body {
+    background-color: white;
+    font-family: "Raleway", sans-serif;
+    color: #445361;
+    text-align: center;
+}
+
+#content-box{
+    width: 600px;
+    height: auto;
+    border: 10px solid lightgray;
+    border-radius: 10px;
+
+    background-color: var(--primary-color);
+    margin: 0 auto;
+    margin-top: 60px;
+}
+
