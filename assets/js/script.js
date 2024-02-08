@@ -1,5 +1,6 @@
 // The number 151 was chosen as thats the amount of unique pokemon that are found in generation 1
-const pokemonCount = 151;
+const pokemonCount = 1000;
+var correctPokemon
 
 document.addEventListener("DOMContentLoaded", async function(){
     var buttons = document.getElementsByTagName("button");
@@ -18,9 +19,11 @@ document.addEventListener("DOMContentLoaded", async function(){
     runGame("easy");
 })
 
-function runGame(difficulty){
-    let pokemonId = Math.floor((Math.random() * 151) + 1);
-    getPokemon(pokemonId);
+async function runGame(difficulty){
+    let pokemonId = Math.floor((Math.random() * pokemonCount) + 1);
+    correctPokemon = await getPokemon(pokemonId);
+
+    console.log(correctPokemon["img"])
 
     if (difficulty === "easy"){
         displayEasyDifficulty()
@@ -32,6 +35,8 @@ function runGame(difficulty){
         alert(`Unknown difficulty: ${difficulty}.`);
         throw `Unknown difficulty: ${difficulty}.`;
     }
+
+    displayPokemon();
 }
 
 async function getPokemon(pokemonId){
@@ -49,6 +54,12 @@ async function getPokemon(pokemonId){
     let pokemonDesc = await res.json();
 
     pokemonDesc = pokemonDesc["flavor_text_entries"][11]["flavor_text"];
+
+    return {"name" : pokemonName, "img" : pokemonImg, "types" : pokemonType, "desc" : pokemonDesc}
+}
+
+function displayPokemon(){
+    document.getElementById("pokemon-image").src = correctPokemon["img"]
 }
 
 function displayEasyDifficulty(){
@@ -60,5 +71,9 @@ function displayMediumDifficulty(){
 }
 
 function displayHardDifficulty(){
+    
+}
+
+function checkAnswer(){
     
 }

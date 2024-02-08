@@ -69,3 +69,13 @@ body {
 .btn.hard:hover {
     background-color: #d32f2f; 
 }
+
+/* Silhouette Image Styling */
+.silhouette {
+    filter: brightness(0%);
+}
+
+#pokemon-image{
+    width: 475px;
+    height: 475px;
+}
