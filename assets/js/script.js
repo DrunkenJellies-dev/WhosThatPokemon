@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", async function(){
             if (this.getAttribute("data-type") === "submit"){
                 checkAnswer();
             } else {
-                let difficulty = this.getAttribute("data-type")
+                let difficulty = this.getAttribute("data-type");
                 runGame(difficulty);
             }
         })
@@ -23,18 +23,13 @@ async function runGame(difficulty){
     let pokemonId = Math.floor((Math.random() * pokemonCount) + 1);
     correctPokemon = await getPokemon(pokemonId);
 
-    if (difficulty === "easy"){
-        displayEasyDifficulty()
-    } else if(difficulty === "medium"){
-        displayMediumDifficulty()
-    } else if(difficulty === "hard"){
-        displayHardDifficulty()
-    } else{
-        alert(`Unknown difficulty: ${difficulty}.`);
-        throw `Unknown difficulty: ${difficulty}.`;
+    if (difficulty === "easy" || difficulty === "medium" || difficulty === "hard"){
+        displayPokemon(difficulty);
+    } else {
+        alert(`Unknown game type: ${difficulty}`);
+        throw `Unknown game type: ${difficulty}. Aborting!`;
     }
 
-    displayPokemon();
 }
 
 async function getPokemon(pokemonId){
@@ -55,33 +50,47 @@ async function getPokemon(pokemonId){
     return {"name" : pokemonName, "img" : pokemonImg, "types" : pokemonType, "desc" : pokemonDesc}
 }
 
-function displayPokemon(){
-    document.getElementById("pokemon-image").src = correctPokemon["img"]
-}
+function displayPokemon(difficulty){
+    //Updates the image of the pokemon with the correct pokemon
+    document.getElementById("pokemon-image").src = correctPokemon["img"];
 
-function displayEasyDifficulty(){
+    //Removes previous types this is due to the fact that not all pokemon have two types 
+    let typesDiv = document.getElementById('pokemon-types');
+    while (typesDiv.firstChild) {
+        typesDiv.firstChild.remove();
+    }
 
-}
-
-function displayMediumDifficulty(){
+    //Adds the correct class type to correspond with css styling
+    let types = correctPokemon["types"];
+    for (let i = 0; i < types.length; i++){
+        let type = document.createElement("span");
+        type.innerText = types[i]["type"]["name"].toUpperCase();
+        type.classList.add("type-box");
+        type.classList.add(types[i]["type"]["name"]);
+        typesDiv.append(type)
+    }
     
-}
-
-function displayHardDifficulty(){
-    
+    //Update Pokemon Description
+    document.getElementById("pokemon-description").innerHTML = correctPokemon["desc"];
 }
 
 function checkAnswer(){
+    //Gets the use input and correct name of the pokemon
     let userAnswer = document.getElementById('answer-box').value;
     let pokemonNameAnswer = correctPokemon['name'];
 
     console.log(userAnswer)
     console.log(pokemonNameAnswer)
 
-    if (userAnswer == pokemonNameAnswer){
+    //Checks if the answer is correct
+    if (userAnswer === pokemonNameAnswer){
         alert(`Correct Answer`);
     } else {
         alert('Incorrect answer')
     }
+}
+
+function checkSimilarity(){
+
 }
 
