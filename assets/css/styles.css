@@ -12,6 +12,10 @@ body {
     text-align: center;
 }
 
+.hidden{
+    display: none;
+}
+
 #content-box, #difficulty-box{
     width: 600px;
     height: auto;
@@ -25,12 +29,11 @@ body {
 
 #difficulty-box{
     display: inline-block;   
-    padding: 5px; 
+    padding: 5px;
+    width: auto; 
 }
 
-#difficulty-box{
-    width: auto;
-}
+
 
 /* Common Button Styles */
 .btn {

@@ -54,24 +54,47 @@ function displayPokemon(difficulty){
     //Updates the image of the pokemon with the correct pokemon
     document.getElementById("pokemon-image").src = correctPokemon["img"];
 
-    //Removes previous types this is due to the fact that not all pokemon have two types 
     let typesDiv = document.getElementById('pokemon-types');
-    while (typesDiv.firstChild) {
-        typesDiv.firstChild.remove();
-    }
+    let pokemonDescription = document.getElementById("pokemon-description");
+    if (difficulty === "medium" || difficulty === "easy"){
+        //Removes previous types this is due to the fact that not all pokemon have two types 
+        while (typesDiv.firstChild) {
+            typesDiv.firstChild.remove();
+        }
 
-    //Adds the correct class type to correspond with css styling
-    let types = correctPokemon["types"];
-    for (let i = 0; i < types.length; i++){
-        let type = document.createElement("span");
-        type.innerText = types[i]["type"]["name"].toUpperCase();
-        type.classList.add("type-box");
-        type.classList.add(types[i]["type"]["name"]);
-        typesDiv.append(type)
+        //checks if the types div contains the class hidden
+        if (typesDiv.classList.contains("hidden")){
+            typesDiv.classList.remove("hidden");
+        }
+
+        //Adds the correct class type to correspond with css styling
+        let types = correctPokemon["types"];
+        for (let i = 0; i < types.length; i++){
+            let type = document.createElement("span");
+            type.innerText = types[i]["type"]["name"].toUpperCase();
+            type.classList.add("type-box");
+            type.classList.add(types[i]["type"]["name"]);
+            typesDiv.append(type)
+        }
+
+        if (difficulty === "easy"){
+
+            if (pokemonDescription.classList.contains("hidden")){
+                pokemonDescription.classList.remove("hidden");
+            }
+
+            //Update Pokemon Description
+            pokemonDescription.innerHTML = correctPokemon["desc"];
+        } else {
+            if (!pokemonDescription.classList.contains("hidden")){
+                pokemonDescription.classList.add("hidden");
+            }
+        }
+    } else {
+        if (!typesDiv.classList.contains("hidden")){
+            typesDiv.classList.add("hidden");
+        }
     }
-    
-    //Update Pokemon Description
-    document.getElementById("pokemon-description").innerHTML = correctPokemon["desc"];
 }
 
 function checkAnswer(){
