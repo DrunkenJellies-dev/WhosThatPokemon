@@ -1,5 +1,5 @@
 // The number 151 was chosen as thats the amount of unique pokemon that are found in generation 1
-const pokemonCount = 1000;
+const pokemonCount = 151;
 var correctPokemon
 
 document.addEventListener("DOMContentLoaded", async function(){
@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", async function(){
     for(let button of buttons){
         button.addEventListener("click", function(){
             if (this.getAttribute("data-type") === "submit"){
-                // checkAnswer();
+                checkAnswer();
             } else {
                 let difficulty = this.getAttribute("data-type")
                 runGame(difficulty);
@@ -22,8 +22,6 @@ document.addEventListener("DOMContentLoaded", async function(){
 async function runGame(difficulty){
     let pokemonId = Math.floor((Math.random() * pokemonCount) + 1);
     correctPokemon = await getPokemon(pokemonId);
-
-    console.log(correctPokemon["img"])
 
     if (difficulty === "easy"){
         displayEasyDifficulty()
@@ -44,7 +42,6 @@ async function getPokemon(pokemonId){
     
     let res = await fetch(pokeApiUrl);
     let pokemon = await res.json();
-    console.log(pokemon);
 
     let pokemonName = pokemon["name"];
     let pokemonType = pokemon["types"];
@@ -75,5 +72,16 @@ function displayHardDifficulty(){
 }
 
 function checkAnswer(){
-    
+    let userAnswer = document.getElementById('answer-box').value;
+    let pokemonNameAnswer = correctPokemon['name'];
+
+    console.log(userAnswer)
+    console.log(pokemonNameAnswer)
+
+    if (userAnswer == pokemonNameAnswer){
+        alert(`Correct Answer`);
+    } else {
+        alert('Incorrect answer')
+    }
 }
+
