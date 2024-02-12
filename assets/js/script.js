@@ -54,18 +54,15 @@ function displayPokemon(difficulty){
     //Updates the image of the pokemon with the correct pokemon
     document.getElementById("pokemon-image").src = correctPokemon["img"];
 
-    let typesDiv = document.getElementById('pokemon-types');
-    let pokemonDescription = document.getElementById("pokemon-description");
+    const typesDiv = document.getElementById('pokemon-types');
+    const pokemonDescription = document.getElementById("pokemon-description");
     if (difficulty === "medium" || difficulty === "easy"){
         //Removes previous types this is due to the fact that not all pokemon have two types 
         while (typesDiv.firstChild) {
             typesDiv.firstChild.remove();
         }
 
-        //checks if the types div contains the class hidden
-        if (typesDiv.classList.contains("hidden")){
-            typesDiv.classList.remove("hidden");
-        }
+        toggleHidden(typesDiv, false)
 
         //Adds the correct class type to correspond with css styling
         let types = correctPokemon["types"];
@@ -79,21 +76,15 @@ function displayPokemon(difficulty){
 
         if (difficulty === "easy"){
 
-            if (pokemonDescription.classList.contains("hidden")){
-                pokemonDescription.classList.remove("hidden");
-            }
+            toggleHidden(pokemonDescription, false)
 
             //Update Pokemon Description
             pokemonDescription.innerHTML = correctPokemon["desc"];
         } else {
-            if (!pokemonDescription.classList.contains("hidden")){
-                pokemonDescription.classList.add("hidden");
-            }
+            toggleHidden(pokemonDescription, true)
         }
     } else {
-        if (!typesDiv.classList.contains("hidden")){
-            typesDiv.classList.add("hidden");
-        }
+        toggleHidden(typesDiv, true);
     }
 }
 
@@ -110,6 +101,14 @@ function checkAnswer(){
         alert(`Correct Answer`);
     } else {
         alert('Incorrect answer')
+    }
+}
+
+function toggleHidden(element, shouldBeHidden) {
+    if (shouldBeHidden) {
+        element.classList.add("hidden");
+    } else {
+        element.classList.remove("hidden");
     }
 }
 
