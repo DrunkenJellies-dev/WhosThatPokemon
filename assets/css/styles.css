@@ -6,11 +6,11 @@
 
 /* General Styling */
 body {
-    /* background: url(/assets/images/pokeball-background.jpg) no-repeat;
-    background-size: cover; */
     font-family: "Raleway", sans-serif;
     color: var(--secondary-color);
     text-align: center;
+    margin: 0;
+    padding: 0;
 }
 
 /* Hidden Styling */
@@ -19,36 +19,39 @@ body {
 }
 
 #content-box{
-    width: 600px;
-    height: auto;
+    width: 100%;
+    max-width: 600px;
+    margin: 10px auto;
+    padding: 20px;
     border: 6px solid lightgray;
     border-radius: 10px;
-
     background-color: white;
-    margin: 0 auto;
-    margin-top: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 #score-box,
 #difficulty-box {
     display: flex;
     flex-direction: row; 
-    justify-content: center; 
+    justify-content: space-around; 
     align-items: center; 
     margin: 20px auto; 
     padding: 10px; 
     border-radius: 10px;
     background-color: var(--primary-color); 
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
-    max-width: 450px;
     border: 6px solid lightgray;
+    max-width: 30%;
+}
+
+.score-item {
+    flex: 1;
 }
 
 .scores {
     margin: 10px;
     font-size: 18px;
     color: #333; 
-    margin-bottom: 10px; 
 }
 
 #difficulty-box {
@@ -105,7 +108,8 @@ body {
 }
 
 #pokemon-image{
-    width: 475px;
+    width: 100%;
+    max-width: 475px;
     height: auto;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
@@ -267,3 +271,4 @@ button[data-type="submit"]:hover {
     background-color: #EE99AC; 
     color: #FFF; 
 }
+
