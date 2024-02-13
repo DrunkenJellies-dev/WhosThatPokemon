@@ -86,6 +86,8 @@ function displayPokemon(difficulty){
 
         if (difficulty === "easy"){
 
+            populateMultipleChoice(correctPokemon['name'])
+
             toggleHidden(pokemonDescription, false)
 
             //Update Pokemon Description
@@ -96,6 +98,24 @@ function displayPokemon(difficulty){
     } else {
         toggleHidden(typesDiv, true);
     }
+}
+
+async function populateMultipleChoice(correctPokemonName){
+    let multipleChoiceButtons = document.getElementsByClassName('multiple-choice');
+    let pokemonNames = [];
+
+    pokemonNames[0] = correctPokemonName;
+    for (let i = 1; i < multipleChoiceButtons.length; i++){
+        let pokemonId = Math.floor((Math.random() * pokemonCount) + 1);
+        let pokeApiUrl = "https://pokeapi.co/api/v2/pokemon/" + pokemonId.toString();
+
+        let res = await fetch(pokeApiUrl);
+        let pokemon = await res.json();
+
+        pokemonNames[i] = pokemon["name"];
+    }
+
+    console.log(pokemonNames)
 }
 
 function checkAnswer(){
@@ -110,13 +130,13 @@ function checkAnswer(){
     differentiateAnswer(userAnswer);
 }
 
-function checkMultipleChoiceAnswer(choice){
-    console.log(choice)
+function checkMultipleChoiceAnswer(userAnswer){
+    console.log(userAnswer)
 
     toggleSilhouette(document.getElementById('pokemon-image'), false);
 
     //Checks if the answer is correct
-    differentiateAnswer(choice);
+    differentiateAnswer(userAnswer);
 }
 
 function differentiateAnswer(userAnswer){
