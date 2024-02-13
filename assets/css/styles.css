@@ -20,8 +20,8 @@ body {
 
 #content-box{
     width: 100%;
-    max-width: 600px;
-    margin: 10px auto;
+    max-width: fit-content;
+    margin: 5px auto;
     padding: 20px;
     border: 6px solid lightgray;
     border-radius: 10px;
@@ -272,3 +272,10 @@ button[data-type="submit"]:hover {
     color: #FFF; 
 }
 
+/* Media Query for Small Screens */
+@media screen and (max-width: 600px) {
+    #score-box,
+    #difficulty-box {
+        max-width: max-content;
+    }
+}
