@@ -2,6 +2,7 @@
 const pokemonCount = 151;
 var correctPokemon;
 
+
 document.addEventListener("DOMContentLoaded", async function(){
     var buttons = document.getElementsByTagName("button");
 
@@ -26,7 +27,7 @@ async function runGame(difficulty){
     toggleAnswerType(difficulty, document.getElementById("text-guess-container"), document.getElementById("multiple-choice-container"));
 
     let pokemonId = Math.floor((Math.random() * pokemonCount) + 1);
-    correctPokemon = await getPokemon(pokemonId);
+    correctPokemon = await getPokemon(pokemonId, difficulty);
 
     if (difficulty === "easy" || difficulty === "medium" || difficulty === "hard"){
         displayPokemon(difficulty);
@@ -36,7 +37,7 @@ async function runGame(difficulty){
     }
 }
 
-async function getPokemon(pokemonId){
+async function getPokemon(pokemonId, difficulty){
     let pokeApiUrl = "https://pokeapi.co/api/v2/pokemon/" + pokemonId.toString();
     
     let res = await fetch(pokeApiUrl);
@@ -51,7 +52,7 @@ async function getPokemon(pokemonId){
 
     pokemonDesc = pokemonDesc["flavor_text_entries"][11]["flavor_text"];
 
-    return {"name" : pokemonName, "img" : pokemonImg, "types" : pokemonType, "desc" : pokemonDesc}
+    return {"name" : pokemonName, "img" : pokemonImg, "types" : pokemonType, "desc" : pokemonDesc, "diff" : difficulty}
 }
 
 function displayPokemon(difficulty){
@@ -86,6 +87,7 @@ function displayPokemon(difficulty){
 
         if (difficulty === "easy"){
 
+            //Populates the correct Pokemon name along with 3 other 'fake' ones on the multiple choice buttons
             populateMultipleChoice(correctPokemon['name'])
 
             toggleHidden(pokemonDescription, false)
@@ -135,16 +137,19 @@ function checkAnswer(){
     toggleSilhouette(document.getElementById('pokemon-image'), false);
 
     //Checks if the answer is correct
-    differentiateAnswer(userAnswer);
+    differentiateAnswer(userAnswer)
+
+    setTimeout(() => {runGame(correctPokemon['diff']); }, 2000);
 }
 
 function checkMultipleChoiceAnswer(userAnswer){
-    console.log(userAnswer)
 
     toggleSilhouette(document.getElementById('pokemon-image'), false);
 
     //Checks if the answer is correct
-    differentiateAnswer(userAnswer);
+    differentiateAnswer(userAnswer)
+
+    setTimeout(() => {runGame(correctPokemon['diff']); }, 2000);
 }
 
 function differentiateAnswer(userAnswer){
