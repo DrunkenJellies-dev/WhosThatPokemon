@@ -1,5 +1,5 @@
 // The number 151 was chosen as thats the amount of unique pokemon that are found in generation 1
-const pokemonCount = 15;
+const pokemonCount = 151;
 var correctPokemon;
 
 document.addEventListener("DOMContentLoaded", async function(){
@@ -96,7 +96,7 @@ function displayPokemon(difficulty){
 
 function checkAnswer(){
     //Gets the use input and correct name of the pokemon
-    let userAnswer = document.getElementById('answer-box').value;
+    let userAnswer = document.getElementById('answer-box').value.toLowerCase();
     let pokemonNameAnswer = correctPokemon['name'];
 
     console.log(userAnswer)
@@ -158,4 +158,3 @@ function toggleSilhouette(element, shouldBeSilhouette){
 function checkSimilarity(){
 
 }
-
