@@ -107,8 +107,35 @@ function checkAnswer(){
     //Checks if the answer is correct
     if (userAnswer === pokemonNameAnswer){
         alert(`Correct Answer`);
+        incrementCorrectAnswer();
     } else {
-        alert('Incorrect answer')
+        alert('Incorrect answer');
+        incrementWrongAnswer();
+    }
+}
+
+function incrementCorrectAnswer(){
+    let score = parseInt(document.getElementById('score').innerText);
+    let streak = parseInt(document.getElementById('current-streak').innerText);
+
+    document.getElementById('score').innerText = ++score;
+    document.getElementById('current-streak').innerText = ++streak;
+
+    setHighestStreak(streak);
+}
+
+function incrementWrongAnswer(){
+    let incorrect = parseInt(document.getElementById(`incorrect`).innerText);
+
+    document.getElementById(`incorrect`).innerText = ++incorrect;
+    document.getElementById('current-streak').innerText = 0;
+}
+
+function setHighestStreak(currentStreak){
+    let highestStreak = parseInt(document.getElementById('highest-streak').innerText);
+
+    if (currentStreak > highestStreak){
+        document.getElementById('highest-streak').innerText = currentStreak;
     }
 }
 
