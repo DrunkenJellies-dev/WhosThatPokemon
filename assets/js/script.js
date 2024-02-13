@@ -9,6 +9,9 @@ document.addEventListener("DOMContentLoaded", async function(){
         button.addEventListener("click", function(){
             if (this.getAttribute("data-type") === "submit"){
                 checkAnswer();
+            } else if(this.getAttribute("data-type") === "multiple-choice-submit"){
+                let choice = this.innerText().toLowerCase();
+                checkMultipleChoiceAnswer(choice);
             } else {
                 let difficulty = this.getAttribute("data-type");
                 runGame(difficulty);
@@ -29,7 +32,6 @@ async function runGame(difficulty){
         alert(`Unknown game type: ${difficulty}`);
         throw `Unknown game type: ${difficulty}. Aborting!`;
     }
-
 }
 
 async function getPokemon(pokemonId){
@@ -114,6 +116,30 @@ function checkAnswer(){
     }
 }
 
+function checkMultipleChoiceAnswer(){
+    //Gets the use input and correct name of the pokemon
+    let userAnswer = document.getElementById('answer-box').value.toLowerCase();
+    let pokemonNameAnswer = correctPokemon['name'];
+
+    console.log(userAnswer)
+    console.log(pokemonNameAnswer)
+
+    toggleSilhouette(document.getElementById('pokemon-image'), false);
+
+    //Checks if the answer is correct
+    if (userAnswer === pokemonNameAnswer){
+        alert(`Correct Answer`);
+        incrementCorrectAnswer();
+    } else {
+        alert('Incorrect answer');
+        incrementWrongAnswer();
+    }
+}
+
+function differentiateAnswer(){
+
+}
+
 function incrementCorrectAnswer(){
     let score = parseInt(document.getElementById('score').innerText);
     let streak = parseInt(document.getElementById('current-streak').innerText);
@@ -136,6 +162,14 @@ function setHighestStreak(currentStreak){
 
     if (currentStreak > highestStreak){
         document.getElementById('highest-streak').innerText = currentStreak;
+    }
+}
+
+function toggleAnswerType(element, shouldBeText) {
+    if (shouldBeHidden) {
+        element.classList.add("hidden");
+    } else {
+        element.classList.remove("hidden");
     }
 }
 
