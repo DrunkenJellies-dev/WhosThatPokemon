@@ -115,7 +115,15 @@ async function populateMultipleChoice(correctPokemonName){
         pokemonNames[i] = pokemon["name"];
     }
 
-    console.log(pokemonNames)
+    console.log(pokemonNames);
+
+    let shuffledPokemonNames = shuffleArray(pokemonNames);
+
+    console.log(shuffledPokemonNames);
+
+    for (let i = 0; i < multipleChoiceButtons.length; i++){
+        multipleChoiceButtons[i].innerText = shuffledPokemonNames[i].toUpperCase();
+    }
 }
 
 function checkAnswer(){
@@ -202,6 +210,15 @@ function toggleSilhouette(element, shouldBeSilhouette){
     } else {
         element.classList.remove("silhouette");
     }
+}
+
+//implemented the fisher-yates shuffle to shuffle an array for the Pokemon names within the buttons 
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1)); 
+        [array[i], array[j]] = [array[j], array[i]]; 
+    }
+    return array;
 }
 
 function checkSimilarity(){
