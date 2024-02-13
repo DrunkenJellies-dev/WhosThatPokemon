@@ -75,7 +75,7 @@ function displayPokemon(difficulty){
 
         toggleHidden(typesDiv, false)
 
-        //Adds the correct class type to correspond with css styling
+        //Creates new span for every type available and adds the correct type class names which corresponds to the css styling 
         let types = correctPokemon["types"];
         for (let i = 0; i < types.length; i++){
             let type = document.createElement("span");
@@ -92,8 +92,12 @@ function displayPokemon(difficulty){
 
             toggleHidden(pokemonDescription, false)
 
-            //Update Pokemon Description
-            pokemonDescription.innerHTML = correctPokemon["desc"];
+            //Update Pokemon Description and checks if the name of the pokemon is included and replaces it 
+            if (correctPokemon["desc"].includes(correctPokemon['name'].toUpperCase())){
+                pokemonDescription.innerHTML = correctPokemon["desc"].replace(correctPokemon['name'].toUpperCase(), "???")
+            } else {
+                pokemonDescription.innerHTML = correctPokemon["desc"];
+            }
         } else {
             toggleHidden(pokemonDescription, true)
         }
