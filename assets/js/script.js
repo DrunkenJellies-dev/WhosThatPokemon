@@ -1,6 +1,6 @@
 // The number 151 was chosen as thats the amount of unique pokemon that are found in generation 1
-const pokemonCount = 151;
-var correctPokemon
+const pokemonCount = 15;
+var correctPokemon;
 
 document.addEventListener("DOMContentLoaded", async function(){
     var buttons = document.getElementsByTagName("button");
@@ -51,11 +51,17 @@ async function getPokemon(pokemonId){
 }
 
 function displayPokemon(difficulty){
-    //Updates the image of the pokemon with the correct pokemon
-    document.getElementById("pokemon-image").src = correctPokemon["img"];
-
+    //Gets all of the relevant elements that needs to be updated 
+    const pokemonImage = document.getElementById("pokemon-image");
     const typesDiv = document.getElementById('pokemon-types');
     const pokemonDescription = document.getElementById("pokemon-description");
+
+    //Adds the silhouette to the Pokemon image
+    toggleSilhouette(pokemonImage, true);
+
+    //Updates the image of the pokemon with the correct pokemon
+    pokemonImage.src = correctPokemon["img"];
+    
     if (difficulty === "medium" || difficulty === "easy"){
         //Removes previous types this is due to the fact that not all pokemon have two types 
         while (typesDiv.firstChild) {
@@ -96,6 +102,8 @@ function checkAnswer(){
     console.log(userAnswer)
     console.log(pokemonNameAnswer)
 
+    toggleSilhouette(document.getElementById('pokemon-image'), false);
+
     //Checks if the answer is correct
     if (userAnswer === pokemonNameAnswer){
         alert(`Correct Answer`);
@@ -109,6 +117,14 @@ function toggleHidden(element, shouldBeHidden) {
         element.classList.add("hidden");
     } else {
         element.classList.remove("hidden");
+    }
+}
+
+function toggleSilhouette(element, shouldBeSilhouette){
+    if (shouldBeSilhouette) {
+        element.classList.add("silhouette");
+    } else {
+        element.classList.remove("silhouette");
     }
 }
 

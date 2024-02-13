@@ -1,39 +1,40 @@
+/* Reuseable Styling */
 :root{
-    --primary-color: white;
-    --secondary-color: black;
-    --tertiary-color: red;
-
+    --primary-color: #ffffff;
+    --secondary-color: #445361;
 }
 
+/* General Styling */
 body {
-    background-color: white;
+    /* background: url(/assets/images/pokeball-background.jpg) no-repeat;
+    background-size: cover; */
     font-family: "Raleway", sans-serif;
-    color: #445361;
+    color: var(--secondary-color);
     text-align: center;
 }
 
+/* Hidden Tag */
 .hidden{
     display: none;
 }
 
-#content-box, #difficulty-box{
+#content-box{
     width: 600px;
     height: auto;
     border: 10px solid lightgray;
     border-radius: 10px;
 
-    background-color: var(--primary-color);
+    background-color: white;
     margin: 0 auto;
     margin-top: 60px;
 }
 
 #difficulty-box{
+    margin-top: 10px;
     display: inline-block;   
     padding: 5px;
     width: auto; 
 }
-
-
 
 /* Common Button Styles */
 .btn {
@@ -51,6 +52,10 @@ body {
 .btn.easy {
     background-color: #4caf50; 
     color: white;
+}
+
+.btn.easy:hover {
+    background-color: #45a049; 
 }
   
 /* Medium Button */
@@ -85,7 +90,7 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
-/* Pokemon Informatino Styling */
+/* Pokemon Information Styling */
 #pokemon-info {
     display: flex;
     flex-direction: column;
@@ -96,10 +101,10 @@ body {
 
 /* pokemon  */
 #pokemon-description {
-    margin: 20px 0px;
+    margin: 10px 0px;
     padding: 10px;
     border-radius: 10px;
-    background-color: #f0f0f0;
+    background-color: white;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     width: 90%;
 }
@@ -119,3 +124,124 @@ body {
     text-transform: uppercase;
 }
 
+#text-guess-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 10px;
+}
+
+#answer-box {
+    padding: 10px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    flex: 1;
+}
+
+button[data-type="submit"] {
+    padding: 10px 20px;
+    margin-left: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #4CAF50; 
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button[data-type="submit"]:hover {
+    background-color: #45a049; 
+}
+
+/* Unique Type Styling */
+.grass {
+    background-color: #78C850;
+    color: #FFF;
+}
+
+.poison {
+    background-color: #A040A0;
+    color: #FFF;
+}
+
+.fire {
+    background-color: #F08030; 
+    color: #FFF; 
+}
+
+.water {
+    background-color: #6890F0; 
+    color: #FFF; 
+}
+
+.electric {
+    background-color: #F8D030; 
+    color: #FFF; 
+}
+
+.normal {
+    background-color: #A8A878; 
+    color: #FFF; 
+}
+
+.fighting {
+    background-color: #C03028; 
+    color: #FFF; 
+}
+
+.psychic {
+    background-color: #F85888; 
+    color: #FFF; 
+}
+
+.ground {
+    background-color: #E0C068; 
+    color: #FFF; 
+}
+
+.flying {
+    background-color: #A890F0; 
+    color: #FFF; 
+}
+
+.bug {
+    background-color: #A8B820; 
+    color: #FFF; 
+}
+
+.rock {
+    background-color: #B8A038; 
+    color: #FFF; 
+}
+
+.ghost {
+    background-color: #705898; 
+    color: #FFF; 
+}
+
+.ice {
+    background-color: #98D8D8; 
+    color: #FFF; 
+}
+
+.dragon {
+    background-color: #7038F8; 
+    color: #FFF; 
+}
+
+.dark {
+    background-color: #705848; 
+    color: #FFF; 
+}
+
+.steel {
+    background-color: #B8B8D0; 
+    color: #FFF; 
+}
+
+.fairy {
+    background-color: #EE99AC; 
+    color: #FFF; 
+}
