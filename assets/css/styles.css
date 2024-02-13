@@ -13,7 +13,7 @@ body {
     text-align: center;
 }
 
-/* Hidden Tag */
+/* Hidden Styling */
 .hidden{
     display: none;
 }
@@ -21,19 +21,40 @@ body {
 #content-box{
     width: 600px;
     height: auto;
-    border: 10px solid lightgray;
+    border: 6px solid lightgray;
     border-radius: 10px;
 
     background-color: white;
     margin: 0 auto;
-    margin-top: 40px;
+    margin-top: 20px;
 }
 
-#difficulty-box{
-    margin-top: 10px;
-    display: inline-block;   
-    padding: 5px;
-    width: auto; 
+#score-box,
+#difficulty-box {
+    display: flex;
+    flex-direction: row; 
+    justify-content: center; 
+    align-items: center; 
+    margin: 20px auto; 
+    padding: 10px; 
+    border-radius: 10px;
+    background-color: var(--primary-color); 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+    max-width: 450px;
+    border: 6px solid lightgray;
+}
+
+.scores {
+    margin: 10px;
+    font-size: 18px;
+    color: #333; 
+    margin-bottom: 10px; 
+}
+
+#difficulty-box {
+    margin-top: 20px; 
+    flex-wrap: wrap; 
+    gap: 10px;
 }
 
 /* Common Button Styles */
@@ -139,6 +160,7 @@ body {
     flex: 1;
 }
 
+/* submit section styling */
 button[data-type="submit"] {
     padding: 10px 20px;
     margin-left: 10px;
