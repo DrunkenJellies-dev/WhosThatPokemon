@@ -23,9 +23,7 @@ document.addEventListener("DOMContentLoaded", async function(){
 })
 
 async function runGame(difficulty){
-    if (difficulty === "easy") {
-        
-    }
+    toggleAnswerType(difficulty, document.getElementById("text-guess-container"), document.getElementById("multiple-choice-container"));
 
     let pokemonId = Math.floor((Math.random() * pokemonCount) + 1);
     correctPokemon = await getPokemon(pokemonId);
@@ -160,11 +158,13 @@ function setHighestStreak(currentStreak){
     }
 }
 
-function toggleAnswerType(element, shouldBeText) {
-    if (shouldBeHidden) {
-        element.classList.add("hidden");
+function toggleAnswerType(difficulty, textElement, multipleElement) {
+    if (difficulty === 'easy') {
+        toggleHidden(textElement, true)
+        toggleHidden(multipleElement, false)
     } else {
-        element.classList.remove("hidden");
+        toggleHidden(textElement, false)
+        toggleHidden(multipleElement, true)
     }
 }
 
