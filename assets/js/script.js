@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", async function(){
             if (this.getAttribute("data-type") === "submit"){
                 checkAnswer();
             } else if(this.getAttribute("data-type") === "multiple-choice-submit"){
-                let choice = this.innerText().toLowerCase();
+                let choice = this.innerText.toLowerCase();
                 checkMultipleChoiceAnswer(choice);
             } else {
                 let difficulty = this.getAttribute("data-type");
@@ -23,6 +23,10 @@ document.addEventListener("DOMContentLoaded", async function(){
 })
 
 async function runGame(difficulty){
+    if (difficulty === "easy") {
+        
+    }
+
     let pokemonId = Math.floor((Math.random() * pokemonCount) + 1);
     correctPokemon = await getPokemon(pokemonId);
 
@@ -99,14 +103,29 @@ function displayPokemon(difficulty){
 function checkAnswer(){
     //Gets the use input and correct name of the pokemon
     let userAnswer = document.getElementById('answer-box').value.toLowerCase();
-    let pokemonNameAnswer = correctPokemon['name'];
 
     console.log(userAnswer)
-    console.log(pokemonNameAnswer)
 
     toggleSilhouette(document.getElementById('pokemon-image'), false);
 
     //Checks if the answer is correct
+    differentiateAnswer(userAnswer);
+}
+
+function checkMultipleChoiceAnswer(choice){
+    console.log(choice)
+
+    toggleSilhouette(document.getElementById('pokemon-image'), false);
+
+    //Checks if the answer is correct
+    differentiateAnswer(choice);
+}
+
+function differentiateAnswer(userAnswer){
+    let pokemonNameAnswer = correctPokemon['name'];
+
+    console.log(pokemonNameAnswer)
+
     if (userAnswer === pokemonNameAnswer){
         alert(`Correct Answer`);
         incrementCorrectAnswer();
@@ -114,30 +133,6 @@ function checkAnswer(){
         alert('Incorrect answer');
         incrementWrongAnswer();
     }
-}
-
-function checkMultipleChoiceAnswer(){
-    //Gets the use input and correct name of the pokemon
-    let userAnswer = document.getElementById('answer-box').value.toLowerCase();
-    let pokemonNameAnswer = correctPokemon['name'];
-
-    console.log(userAnswer)
-    console.log(pokemonNameAnswer)
-
-    toggleSilhouette(document.getElementById('pokemon-image'), false);
-
-    //Checks if the answer is correct
-    if (userAnswer === pokemonNameAnswer){
-        alert(`Correct Answer`);
-        incrementCorrectAnswer();
-    } else {
-        alert('Incorrect answer');
-        incrementWrongAnswer();
-    }
-}
-
-function differentiateAnswer(){
-
 }
 
 function incrementCorrectAnswer(){
