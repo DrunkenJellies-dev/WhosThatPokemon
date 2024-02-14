@@ -22,7 +22,6 @@ body {
     width: 100%;
     max-width: fit-content;
     margin: 5px auto;
-    padding: 20px;
     border: 6px solid lightgray;
     border-radius: 10px;
     background-color: white;
@@ -35,7 +34,7 @@ body {
     flex-direction: row; 
     justify-content: space-around; 
     align-items: center; 
-    margin: 20px auto; 
+    margin: 15px auto; 
     padding: 10px; 
     border-radius: 10px;
     background-color: var(--primary-color); 
@@ -44,12 +43,8 @@ body {
     max-width: 30%;
 }
 
-.score-item {
-    flex: 1;
-}
-
 .scores {
-    margin: 10px;
+    margin: 5px;
     font-size: 18px;
     color: #333; 
 }
@@ -63,7 +58,8 @@ body {
 /* Common Button Styles */
 .btn {
     display: inline-block;
-    padding: 10px 20px;
+    padding: 10px 5px;
+    margin-bottom: 5px;
     border: none;
     border-radius: 5px;
     font-size: 16px;
@@ -272,7 +268,7 @@ button[data-type="submit"]:hover {
 }
 
 /* Media Query for Small Screens */
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 768px) {
     #score-box,
     #difficulty-box {
         max-width: max-content;
