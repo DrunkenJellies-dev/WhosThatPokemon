@@ -58,7 +58,7 @@ async function getPokemon(pokemonId, difficulty){
 
     pokemonDesc = pokemonDesc["flavor_text_entries"][11]["flavor_text"];
 
-    return {"name" : pokemonName, "img" : pokemonImg, "types" : pokemonType, "desc" : pokemonDesc, "diff" : difficulty}
+    return {"name" : pokemonName, "img" : pokemonImg, "types" : pokemonType, "desc" : pokemonDesc, "diff" : difficulty};
 }
 
 function displayPokemon(difficulty){
@@ -88,25 +88,25 @@ function displayPokemon(difficulty){
             type.innerText = types[i].type.name.toUpperCase();
             type.classList.add("type-box");
             type.classList.add(types[i].type.name);
-            typesDiv.append(type)
+            typesDiv.append(type);
         }
 
         if (difficulty === "easy"){
 
             //Populates the correct Pokemon name along with 3 other 'fake' ones on the multiple choice buttons
-            populateMultipleChoice(correctPokemon.name)
+            populateMultipleChoice(correctPokemon.name);
 
             //removes Hidden to Pokemon Description
-            toggleHidden(pokemonDescription, false)
+            toggleHidden(pokemonDescription, false);
 
             //Update Pokemon Description and checks if the name of the pokemon is included and replaces it 
             if (correctPokemon.desc.includes(correctPokemon.name.toUpperCase())){
-                pokemonDescription.innerHTML = correctPokemon.desc.replace(correctPokemon.name.toUpperCase(), "???")
+                pokemonDescription.innerHTML = correctPokemon.desc.replace(correctPokemon.name.toUpperCase(), "???");
             } else {
                 pokemonDescription.innerHTML = correctPokemon.desc;
             }
         } else {
-            toggleHidden(pokemonDescription, true)
+            toggleHidden(pokemonDescription, true);
         }
     } else {
         toggleHidden(typesDiv, true);
@@ -139,12 +139,12 @@ function checkTextAnswer(){
     //Gets the use input and correct name of the pokemon
     let userAnswer = document.getElementById('answer-box').value.toLowerCase();
 
-    console.log(userAnswer)
+    console.log(userAnswer);
 
     toggleSilhouette(document.getElementById('pokemon-image'), false);
 
     //Checks if the answer is correct
-    differentiateAnswer(userAnswer)
+    differentiateAnswer(userAnswer);
 
     setTimeout(() => {runGame(correctPokemon.diff); }, 2000);
 }
@@ -154,7 +154,7 @@ function checkMultipleChoiceAnswer(userAnswer){
     toggleSilhouette(document.getElementById('pokemon-image'), false);
 
     //Checks if the answer is correct
-    differentiateAnswer(userAnswer)
+    differentiateAnswer(userAnswer);
 
     setTimeout(() => {runGame(correctPokemon.diff); }, 2000);
 }
@@ -162,7 +162,7 @@ function checkMultipleChoiceAnswer(userAnswer){
 function differentiateAnswer(userAnswer){
     let pokemonNameAnswer = correctPokemon.name;
 
-    console.log(pokemonNameAnswer)
+    console.log(pokemonNameAnswer);
 
     if (userAnswer === pokemonNameAnswer){
         alert(`Correct Answer`);
@@ -200,11 +200,11 @@ function setHighestStreak(currentStreak){
 
 function toggleAnswerType(difficulty, textElement, multipleElement) {
     if (difficulty === 'easy') {
-        toggleHidden(textElement, true)
-        toggleHidden(multipleElement, false)
+        toggleHidden(textElement, true);
+        toggleHidden(multipleElement, false);
     } else {
-        toggleHidden(textElement, false)
-        toggleHidden(multipleElement, true)
+        toggleHidden(textElement, false);
+        toggleHidden(multipleElement, true);
     }
 }
 
