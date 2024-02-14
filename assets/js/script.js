@@ -1,27 +1,33 @@
 // The number 151 was chosen as thats the amount of unique pokemon that are found in generation 1
 const pokemonCount = 151;
+// Stores the information for the current pokemon that is being guessed
 var correctPokemon;
 
-
 document.addEventListener("DOMContentLoaded", async function(){
+    //Gets all the buttons elements on the page
     var buttons = document.getElementsByTagName("button");
 
+    //Assigns Event Listeners for each button with a different action for each data-type
     for(let button of buttons){
         button.addEventListener("click", function(){
             if (this.getAttribute("data-type") === "submit"){
-                checkAnswer();
+                checkTextAnswer();
             } else if(this.getAttribute("data-type") === "multiple-choice-submit"){
+                //checks the answer using innerText of the multiple choice button selected
                 let choice = this.innerText.toLowerCase();
                 checkMultipleChoiceAnswer(choice);
             } else {
+                //Sets the difficulty of the current game by getting the data-type from the button clicked
                 let difficulty = this.getAttribute("data-type");
                 runGame(difficulty);
             }
-        })
+        });
     }
 
+    //Used to start the first game
     runGame("easy");
-})
+});
+
 
 async function runGame(difficulty){
     toggleAnswerType(difficulty, document.getElementById("text-guess-container"), document.getElementById("multiple-choice-container"));
@@ -43,11 +49,11 @@ async function getPokemon(pokemonId, difficulty){
     let res = await fetch(pokeApiUrl);
     let pokemon = await res.json();
 
-    let pokemonName = pokemon["name"];
-    let pokemonType = pokemon["types"];
+    let pokemonName = pokemon.name;
+    let pokemonType = pokemon.types;
     let pokemonImg = pokemon["sprites"]["other"]["official-artwork"]["front_default"];
 
-    res = await fetch(pokemon["species"]["url"]);
+    res = await fetch(pokemon.species.url);
     let pokemonDesc = await res.json();
 
     pokemonDesc = pokemonDesc["flavor_text_entries"][11]["flavor_text"];
@@ -65,7 +71,7 @@ function displayPokemon(difficulty){
     toggleSilhouette(pokemonImage, true);
 
     //Updates the image of the pokemon with the correct pokemon
-    pokemonImage.src = correctPokemon["img"];
+    pokemonImage.src = correctPokemon.img;
     
     if (difficulty === "medium" || difficulty === "easy"){
         //Removes previous types this is due to the fact that not all pokemon have two types 
@@ -76,27 +82,28 @@ function displayPokemon(difficulty){
         toggleHidden(typesDiv, false)
 
         //Creates new span for every type available and adds the correct type class names which corresponds to the css styling 
-        let types = correctPokemon["types"];
+        let types = correctPokemon.types;
         for (let i = 0; i < types.length; i++){
             let type = document.createElement("span");
-            type.innerText = types[i]["type"]["name"].toUpperCase();
+            type.innerText = types[i].type.name.toUpperCase();
             type.classList.add("type-box");
-            type.classList.add(types[i]["type"]["name"]);
+            type.classList.add(types[i].type.name);
             typesDiv.append(type)
         }
 
         if (difficulty === "easy"){
 
             //Populates the correct Pokemon name along with 3 other 'fake' ones on the multiple choice buttons
-            populateMultipleChoice(correctPokemon['name'])
+            populateMultipleChoice(correctPokemon.name)
 
+            //removes Hidden to Pokemon Description
             toggleHidden(pokemonDescription, false)
 
             //Update Pokemon Description and checks if the name of the pokemon is included and replaces it 
-            if (correctPokemon["desc"].includes(correctPokemon['name'].toUpperCase())){
-                pokemonDescription.innerHTML = correctPokemon["desc"].replace(correctPokemon['name'].toUpperCase(), "???")
+            if (correctPokemon.desc.includes(correctPokemon.name.toUpperCase())){
+                pokemonDescription.innerHTML = correctPokemon.desc.replace(correctPokemon.name.toUpperCase(), "???")
             } else {
-                pokemonDescription.innerHTML = correctPokemon["desc"];
+                pokemonDescription.innerHTML = correctPokemon.desc;
             }
         } else {
             toggleHidden(pokemonDescription, true)
@@ -118,21 +125,17 @@ async function populateMultipleChoice(correctPokemonName){
         let res = await fetch(pokeApiUrl);
         let pokemon = await res.json();
 
-        pokemonNames[i] = pokemon["name"];
+        pokemonNames[i] = pokemon.name;
     }
 
-    console.log(pokemonNames);
-
     let shuffledPokemonNames = shuffleArray(pokemonNames);
-
-    console.log(shuffledPokemonNames);
 
     for (let i = 0; i < multipleChoiceButtons.length; i++){
         multipleChoiceButtons[i].innerText = shuffledPokemonNames[i].toUpperCase();
     }
 }
 
-function checkAnswer(){
+function checkTextAnswer(){
     //Gets the use input and correct name of the pokemon
     let userAnswer = document.getElementById('answer-box').value.toLowerCase();
 
@@ -143,7 +146,7 @@ function checkAnswer(){
     //Checks if the answer is correct
     differentiateAnswer(userAnswer)
 
-    setTimeout(() => {runGame(correctPokemon['diff']); }, 2000);
+    setTimeout(() => {runGame(correctPokemon.diff); }, 2000);
 }
 
 function checkMultipleChoiceAnswer(userAnswer){
@@ -153,11 +156,11 @@ function checkMultipleChoiceAnswer(userAnswer){
     //Checks if the answer is correct
     differentiateAnswer(userAnswer)
 
-    setTimeout(() => {runGame(correctPokemon['diff']); }, 2000);
+    setTimeout(() => {runGame(correctPokemon.diff); }, 2000);
 }
 
 function differentiateAnswer(userAnswer){
-    let pokemonNameAnswer = correctPokemon['name'];
+    let pokemonNameAnswer = correctPokemon.name;
 
     console.log(pokemonNameAnswer)
 
