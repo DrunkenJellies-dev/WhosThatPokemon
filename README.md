@@ -92,7 +92,7 @@ While testing I found that there were two errors:
 * Bug: If hard mode was selected when the previous difficulty selected was easy then the Pokemon description would be visible.
     * Fix: I added a toggle to add the .hidden styling to the Pokemon description when displaying the difficulty format on line 125
 
-## DEPLOYMENT
+## Deployment
 The site was deployed to GitHub Pages.
 1. Navigate to the Github repo being deployed
 2. Select 'Settings'
@@ -118,8 +118,8 @@ The site was deployed to GitHub Pages.
 * markdownlivepreview.com - used to write the README.md while seeing a preview
 * shareX - to gather screenshots for the README
 
-## CREDITS
+## Credits
 * The inspiration to use PokeAPI within a game format came from: https://www.youtube.com/watch?v=dVtnFH4m_fE&ab_channel=KennyYipCoding
 * google fonts
-* js code to shuffle an array came from: https://stackoverflow.com/questions/1519736/random-shuffling-of-an-array
+* javascript code to shuffle an array (fisher-yates shuffle method) came from: https://stackoverflow.com/questions/1519736/random-shuffling-of-an-array
     https://stackoverflow.com/questions/58750774/ask-user-enter-name-with-javascript-and-html
